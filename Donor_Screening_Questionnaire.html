@@ -1,0 +1,1228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Donor Screening Questionnaire · The Microbiome Clinic</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://api.fontshare.com/v2/css?f[]=general-sans@500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+<style>
+  /* ---------- Brand tokens ---------- */
+  :root {
+    --sky-blue:  #7EC2F1;
+    --peach:     #FFB56C;
+    --dark-blue: #316A9C;
+    --brown:     #5D5A49;
+    --cream:     #FFFEF0;
+    --brown-60:  rgba(93, 90, 73, 0.60);
+    --brown-30:  rgba(93, 90, 73, 0.30);
+    --brown-15:  rgba(93, 90, 73, 0.15);
+
+    --heading:   'General Sans', 'Helvetica Neue', Arial, sans-serif;
+    --body:      'Crimson Pro', 'Georgia', serif;
+  }
+
+  /* ---------- Reset / base ---------- */
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    font-family: var(--body);
+    color: var(--brown);
+    background: #e9e6d6;
+    font-size: 11.5pt;
+    line-height: 1.2;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* ---------- A4 page ---------- */
+  .page {
+    width: 210mm;
+    height: 297mm;
+    margin: 16px auto;
+    background: var(--cream);
+    padding: 16mm 18mm 18mm;
+    position: relative;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+    overflow: hidden;
+  }
+
+  /* ---------- Page 1 header ---------- */
+  .header-center {
+    text-align: center;
+    padding-bottom: 6mm;
+    border-bottom: 1px solid var(--brown-30);
+    margin-bottom: 7mm;
+  }
+  .logo-stack {
+    width: 22mm;
+    height: auto;
+    display: inline-block;
+  }
+  .doc-meta {
+    margin-top: 4mm;
+    font-family: var(--heading);
+    font-weight: 500;
+    font-size: 7.5pt;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--brown-60);
+  }
+  .doc-meta .pill {
+    display: inline-block;
+    background: var(--sky-blue);
+    color: var(--cream);
+    padding: 4px 10px 3px;
+    letter-spacing: 0.22em;
+    margin-right: 6mm;
+  }
+  .doc-meta .sep {
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    background: var(--sky-blue);
+    border-radius: 50%;
+    margin: 0 8px;
+    vertical-align: middle;
+  }
+
+  /* ---------- Continuation header ---------- */
+  .header-slim {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 5mm;
+    margin-bottom: 7mm;
+    border-bottom: 1px solid var(--brown-30);
+  }
+  .header-slim .logo-mini {
+    width: 13mm;
+    height: auto;
+  }
+  .header-slim .meta {
+    text-align: right;
+    font-family: var(--heading);
+    font-weight: 500;
+    font-size: 7.5pt;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--brown-60);
+    line-height: 1.6;
+  }
+  .header-slim .meta .continued {
+    color: var(--brown);
+  }
+
+  /* ---------- Title block ---------- */
+  .title-block { margin-bottom: 6mm; }
+  h1 {
+    font-family: var(--heading);
+    font-weight: 500;
+    font-size: 26pt;
+    line-height: 1;
+    letter-spacing: -0.02em;
+    color: var(--brown);
+    margin: 0 0 4mm;
+  }
+  .intro {
+    font-family: var(--body);
+    font-size: 10.5pt;
+    line-height: 1.35;
+    color: var(--brown);
+    max-width: 165mm;
+    margin: 0;
+  }
+  .intro em { font-style: italic; }
+
+  /* ---------- Section ---------- */
+  section {
+    margin-bottom: 5mm;
+    break-inside: avoid;
+  }
+  .section-head {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    margin-bottom: 3.5mm;
+  }
+  .section-num {
+    font-family: var(--heading);
+    font-weight: 500;
+    font-size: 8pt;
+    letter-spacing: 0.15em;
+    color: var(--cream);
+    background: var(--brown);
+    padding: 3px 7px 2px;
+    text-transform: uppercase;
+    line-height: 1;
+  }
+  h2 {
+    font-family: var(--heading);
+    font-weight: 500;
+    font-size: 13.5pt;
+    letter-spacing: 0;
+    color: var(--brown);
+    margin: 0;
+    line-height: 1;
+  }
+  .section-cont {
+    font-size: 9pt;
+    color: var(--brown-60);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-left: 4mm;
+  }
+
+  /* ---------- Form fields ---------- */
+  .grid { display: grid; gap: 4mm 6mm; }
+  .grid.cols-2   { grid-template-columns: 1fr 1fr; }
+  .grid.cols-3   { grid-template-columns: 1fr 1fr 1fr; }
+
+  .field { display: flex; flex-direction: column; }
+  .field label {
+    font-family: var(--heading);
+    font-weight: 500;
+    font-size: 7.5pt;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--brown-60);
+    margin-bottom: 2mm;
+  }
+  /* ---------- Inputs styled as lines ---------- */
+  input.line,
+  input.answer-line,
+  input.sub-line,
+  input.sub-q-line {
+    font-family: var(--body);
+    font-size: 11pt;
+    color: var(--brown);
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid var(--brown-60);
+    outline: none;
+    padding: 0 2px;
+    margin: 0;
+    width: 100%;
+    border-radius: 0;
+    -webkit-appearance: none;
+    appearance: none;
+  }
+  input.line { height: 7mm; }
+  input.answer-line { height: 7mm; }
+  input.sub-line { height: 6mm; }
+  input.sub-q-line { height: 7mm; }
+  input.line:focus,
+  input.answer-line:focus,
+  input.sub-line:focus,
+  input.sub-q-line:focus {
+    background: rgba(126, 194, 241, 0.12);
+    border-bottom-color: var(--brown);
+  }
+  /* Checkbox styled as box */
+  input[type="checkbox"].box {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 3.8mm;
+    height: 3.8mm;
+    border: 1px solid var(--brown);
+    background: transparent;
+    cursor: pointer;
+    margin: 0;
+    padding: 0;
+    flex-shrink: 0;
+    position: relative;
+    border-radius: 0;
+  }
+  input[type="checkbox"].box:checked {
+    background: var(--brown);
+  }
+  input[type="checkbox"].box:checked::after {
+    content: '';
+    position: absolute;
+    left: 0.9mm;
+    top: 0.1mm;
+    width: 1.4mm;
+    height: 2.4mm;
+    border: solid var(--cream);
+    border-width: 0 0.5mm 0.5mm 0;
+    transform: rotate(45deg);
+  }
+
+  /* ---------- Yes / No checkbox row ---------- */
+  .yn-row {
+    display: flex;
+    gap: 6mm;
+    align-items: center;
+    margin-top: 2.5mm;
+  }
+  .yn-option {
+    display: inline-flex;
+    align-items: center;
+    gap: 2mm;
+    font-family: var(--heading);
+    font-weight: 500;
+    font-size: 8.5pt;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--brown);
+    cursor: pointer;
+    user-select: none;
+  }
+  .yn-option input.yn-box {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 4mm;
+    height: 4mm;
+    border: 1px solid var(--brown);
+    background: transparent;
+    cursor: pointer;
+    margin: 0;
+    padding: 0;
+    position: relative;
+    border-radius: 0;
+    flex-shrink: 0;
+  }
+  .yn-option input.yn-box:checked { background: var(--brown); }
+  .yn-option input.yn-box:checked::after {
+    content: '';
+    position: absolute;
+    left: 1mm;
+    top: 0.15mm;
+    width: 1.5mm;
+    height: 2.5mm;
+    border: solid var(--cream);
+    border-width: 0 0.5mm 0.5mm 0;
+    transform: rotate(45deg);
+  }
+  .yn-detail {
+    flex: 1;
+    border: none;
+    border-bottom: 1px solid var(--brown-60);
+    height: 6mm;
+    font-family: var(--body);
+    font-size: 10.5pt;
+    color: var(--brown);
+    background: transparent;
+    outline: none;
+    padding: 0 2px;
+    margin-left: 2mm;
+    -webkit-appearance: none;
+    appearance: none;
+    border-radius: 0;
+  }
+  .yn-detail:focus {
+    background: rgba(126, 194, 241, 0.12);
+    border-bottom-color: var(--brown);
+  }
+  .yn-detail-label {
+    font-family: var(--heading);
+    font-weight: 500;
+    font-size: 7pt;
+    letter-spacing: 0.18em;
+    color: var(--brown-60);
+    text-transform: uppercase;
+    margin-left: 2mm;
+    white-space: nowrap;
+  }
+
+  /* ---------- Numbered question rows ---------- */
+  .q {
+    display: flex;
+    gap: 4mm;
+    margin-bottom: 4mm;
+    break-inside: avoid;
+  }
+  .q .num {
+    font-family: var(--heading);
+    font-weight: 500;
+    font-size: 9pt;
+    color: var(--brown);
+    background: var(--brown-15);
+    padding: 4px 7px 3px;
+    border-radius: 2px;
+    line-height: 1;
+    min-width: 9mm;
+    text-align: center;
+    flex-shrink: 0;
+    height: fit-content;
+    margin-top: 1mm;
+  }
+  .q .body {
+    flex: 1;
+  }
+  .q .question-text {
+    font-family: var(--body);
+    font-size: 11pt;
+    line-height: 1.3;
+    color: var(--brown);
+    margin: 0 0 2.5mm;
+  }
+  .q .question-text em { font-style: italic; }
+  .q .answer-line {
+    border-bottom: 1px solid var(--brown-60);
+    height: 7mm;
+  }
+  .q ul.bullets {
+    margin: 0 0 2.5mm 5mm;
+    padding: 0;
+    font-family: var(--body);
+    font-size: 10.5pt;
+    line-height: 1.35;
+    color: var(--brown);
+  }
+  .q ul.bullets li { margin-bottom: 1mm; }
+
+  /* ---------- Sub-row (e.g. Q16 return date, Q17 sub-items) ---------- */
+  .sub-row {
+    display: grid;
+    gap: 2mm 5mm;
+    margin-top: 2.5mm;
+  }
+  .sub-row.cols-2 { grid-template-columns: auto 1fr; align-items: end; }
+  .sub-row .sub-label {
+    font-family: var(--heading);
+    font-weight: 500;
+    font-size: 8.5pt;
+    letter-spacing: 0.08em;
+    color: var(--brown);
+  }
+  .sub-row .sub-line {
+    border-bottom: 1px solid var(--brown-60);
+    height: 6mm;
+  }
+
+  /* ---------- Vaccine checkbox grid ---------- */
+  .vaccines {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2mm 6mm;
+    margin-top: 2.5mm;
+    padding: 4mm 5mm;
+    background: rgba(126, 194, 241, 0.10);
+    border-left: 3px solid var(--sky-blue);
+  }
+  .vaccines .check {
+    display: flex;
+    align-items: center;
+    gap: 3mm;
+    font-family: var(--body);
+    font-size: 10.5pt;
+    color: var(--brown);
+  }
+  .vaccines .box {
+    width: 3.8mm;
+    height: 3.8mm;
+    border: 1px solid var(--brown);
+    flex-shrink: 0;
+  }
+
+  /* ---------- Sub-question stack (Q17) ---------- */
+  .sub-q-stack {
+    margin-top: 2mm;
+    display: grid;
+    gap: 3.5mm;
+  }
+  .sub-q {
+    display: flex;
+    gap: 4mm;
+    align-items: flex-end;
+  }
+  .sub-q .sub-q-label {
+    font-family: var(--body);
+    font-size: 11pt;
+    color: var(--brown);
+    width: 70mm;
+    flex-shrink: 0;
+    padding-bottom: 1mm;
+  }
+  .sub-q .sub-q-line {
+    flex: 1;
+    border-bottom: 1px solid var(--brown-60);
+    height: 7mm;
+  }
+
+  /* ---------- Section intro paragraph ---------- */
+  .section-intro {
+    font-family: var(--body);
+    font-size: 10.5pt;
+    line-height: 1.35;
+    color: var(--brown);
+    margin: 0 0 4mm;
+    max-width: 165mm;
+  }
+  .section-intro em { font-style: italic; }
+
+  /* ---------- Declaration ---------- */
+  .auth-box {
+    border: 1px solid var(--brown-30);
+    padding: 5mm 6mm;
+    margin-top: 2mm;
+  }
+  .auth-statement {
+    font-family: var(--body);
+    font-size: 10.5pt;
+    line-height: 1.4;
+    color: var(--brown);
+    margin: 0 0 5mm;
+  }
+  .auth-statement em { font-style: italic; }
+  .signature-row {
+    display: grid;
+    grid-template-columns: 2fr 1.2fr 1fr;
+    gap: 6mm;
+  }
+  .signature-row .field .line { height: 10mm; }
+
+  /* ---------- Footer ---------- */
+  .footer {
+    position: absolute;
+    left: 18mm;
+    right: 18mm;
+    bottom: 10mm;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: var(--heading);
+    font-weight: 500;
+    font-size: 7pt;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--brown-60);
+    padding-top: 4mm;
+    border-top: 1px solid var(--brown-15);
+  }
+  .footer .mono-dot {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--sky-blue);
+    display: inline-block;
+    margin: 0 8px;
+    vertical-align: middle;
+  }
+
+  /* ---------- Print ---------- */
+  @page { size: A4; margin: 0; }
+  @media print {
+    body { background: var(--cream); }
+    .page {
+      margin: 0;
+      box-shadow: none;
+      page-break-after: always;
+    }
+    .page:last-of-type { page-break-after: auto; }
+    .no-print { display: none; }
+  }
+
+  /* ---------- Print button (screen only) ---------- */
+  .print-bar {
+    position: fixed;
+    top: 16px;
+    right: 16px;
+    z-index: 10;
+  }
+  .print-bar button {
+    font-family: var(--heading);
+    font-weight: 500;
+    font-size: 9pt;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--cream);
+    background: var(--brown);
+    border: none;
+    padding: 10px 18px;
+    cursor: pointer;
+  }
+  .print-bar button:hover { background: var(--dark-blue); }
+</style>
+</head>
+<body>
+
+<div class="print-bar no-print">
+  <button onclick="window.print()">Print / Save as PDF</button>
+</div>
+
+<!-- ================= PAGE 1 ================= -->
+<div class="page">
+
+  <header class="header-center">
+    <svg class="logo-stack" viewBox="720 780 560 440" xmlns="http://www.w3.org/2000/svg" aria-label="The Microbiome Clinic">
+      <g fill="#5D5A49">
+        <path d="M851.45,802.09c-.15-4.3.74-6.83,3.71-9.79h-18.85l-36.36,74.8-36.95-74.8h-19.14c2.97,2.97,4.3,5.49,4.16,12.91l-2.37,96.02c-.15,4.3-.74,6.83-2.23,9.79h19.89c-1.48-2.97-2.37-5.49-2.23-9.79l1.63-73.02,31.31,63.52h11.43l30.87-63.81,1.78,73.31c.15,4.3-.74,6.83-2.23,9.79h20.18c-1.48-2.97-2.08-5.49-2.23-9.79l-2.37-99.14Z"/>
+        <path d="M904.99,792.29h-20.48c1.48,2.97,2.23,5.49,2.23,9.79v99.14c0,4.3-.74,6.83-2.23,9.79h20.48c-1.48-2.97-2.23-5.49-2.23-9.79v-99.14c0-4.3.74-6.83,2.23-9.79Z"/>
+        <path d="M1012.11,894.25c-5.34,2.08-11.58,2.97-18.7,2.97-29.53,0-48.53-19.74-48.53-45.56s18.7-45.56,48.53-45.56c7.12,0,13.51.74,18.7,2.38,6.53,2.08,10.09,4.75,13.95,8.61l-.45-20.63c-10.98-4.6-20.33-5.64-32.35-5.64-38.14,0-65.6,26.42-65.6,60.85s26.27,60.85,65.6,60.85c12.02,0,21.37-1.48,32.35-6.08l.59-21.67c-3.41,3.86-6.38,6.53-14.1,9.5Z"/>
+        <path d="M1128.13,900.04c-6.68-9.94-15.73-23.89-24.34-35.17-1.93-2.38-3.41-4.45-5.94-6.68,14.1-5.05,22.26-16.18,22.26-31.46,0-19-13.65-34.43-36.06-34.43h-34.28c1.48,2.97,2.23,5.49,2.23,9.79v99.14c0,4.3-.74,6.83-2.23,9.79h20.48c-1.48-2.97-2.23-5.49-2.23-9.79v-40.96c2.37,0,5.34.15,8.46,1.04,5.05,1.48,9.2,5.94,11.72,9.35,7.27,10.39,14.4,20.78,21.52,31.31,1.93,2.82,3.12,5.34,4.01,9.05h23.75c-3.71-3.12-6.08-6.23-9.35-10.98ZM1078.56,846.16c-3.71,0-6.83-.15-10.54-1.04v-37.84h12.91c14.99,0,22.41,8.46,22.41,19.59s-7.42,19.29-24.78,19.29Z"/>
+        <path d="M1203.04,790.81c-34.28,0-60.85,26.42-60.85,60.85s26.56,60.85,60.85,60.85,60.85-26.42,60.85-60.85-26.56-60.85-60.85-60.85ZM1202.89,897.07c-24.49,0-43.48-19.74-43.48-45.41s19-45.56,43.48-45.56,43.48,19.74,43.48,45.56-19,45.41-43.48,45.41Z"/>
+        <path d="M801.03,996.02c6.98-4.9,11.58-13.36,11.58-23.45,0-17.81-12.91-31.91-33.69-31.91h-33.24c1.48,2.97,2.23,5.49,2.23,9.79v99.14c0,4.3-.74,6.83-2.23,9.79h40.07c23.3,0,37.4-12.61,37.4-33.24,0-15.43-9.35-26.71-22.11-30.13ZM763.92,955.66h12.91c12.17,0,19.29,7.72,19.29,17.51,0,10.39-5.64,18.11-20.63,18.11h-11.58v-35.62ZM783.96,1044.26h-20.04v-37.99h19.29c15.43,0,23.15,8.9,23.15,19.59s-6.23,18.4-22.41,18.4Z"/>
+        <path d="M868.98,940.67h-20.48c1.48,2.97,2.23,5.49,2.23,9.79v99.14c0,4.3-.74,6.83-2.23,9.79h20.48c-1.48-2.97-2.23-5.49-2.23-9.79v-99.14c0-4.3.74-6.83,2.23-9.79Z"/>
+        <path d="M956.47,939.18c-34.28,0-60.85,26.42-60.85,60.85s26.56,60.85,60.85,60.85,60.85-26.42,60.85-60.85-26.56-60.85-60.85-60.85ZM956.32,1045.44c-24.49,0-43.48-19.74-43.48-45.41s19-45.56,43.48-45.56,43.48,19.74,43.48,45.56-19,45.41-43.48,45.41Z"/>
+        <path d="M1150.51,950.46c-.15-4.3.74-6.83,3.71-9.79h-18.85l-36.36,74.8-36.95-74.8h-19.14c2.97,2.97,4.3,5.49,4.16,12.91l-2.37,96.02c-.15,4.3-.74,6.83-2.23,9.79h19.89c-1.48-2.97-2.37-5.49-2.23-9.79l1.63-73.02,31.31,63.52h11.43l30.87-63.81,1.78,73.31c.15,4.3-.74,6.83-2.23,9.79h20.18c-1.48-2.97-2.08-5.49-2.23-9.79l-2.37-99.14Z"/>
+        <path d="M1204.66,1044.26v-37.7h33.69c4.3,0,6.83.74,9.79,2.23v-19.59c-2.97,1.48-5.49,2.23-9.79,2.23h-33.69v-35.62h32.5c6.08,0,9.5,1.19,12.91,3.12l-.74-18.25h-62.92c1.48,2.97,2.23,5.49,2.23,9.79v99.14c0,4.3-.74,6.83-2.23,9.79h64.26l4.16-18.25c-3.41,1.93-8.01,3.12-14.1,3.12h-36.06Z"/>
+        <path d="M820.56,1190.94c-5.34,2.08-11.58,2.97-18.7,2.97-29.53,0-48.53-19.74-48.53-45.56s18.7-45.56,48.53-45.56c7.12,0,13.5.74,18.7,2.38,6.53,2.08,10.09,4.75,13.95,8.61l-.45-20.63c-10.98-4.6-20.33-5.64-32.35-5.64-38.14,0-65.6,26.42-65.6,60.85s26.27,60.85,65.6,60.85c12.02,0,21.37-1.48,32.35-6.08l.59-21.67c-3.41,3.86-6.38,6.53-14.1,9.5Z"/>
+        <path d="M874.77,1192.57v-93.79c0-4.3.74-6.83,2.23-9.79h-20.48c1.48,2.97,2.23,5.49,2.23,9.79v99.14c0,4.3-.74,6.83-2.23,9.79h58.18l2.37-18.25c-3.41,1.93-6.83,3.12-12.91,3.12h-29.38Z"/>
+        <path d="M953.36,1088.98h-20.48c1.48,2.97,2.23,5.49,2.23,9.79v99.14c0,4.3-.74,6.83-2.23,9.79h20.48c-1.48-2.97-2.23-5.49-2.23-9.79v-99.14c0-4.3.74-6.83,2.23-9.79Z"/>
+        <path d="M1086.97,1088.98h-19.59c1.48,2.97,2.23,5.49,2.23,9.79v81.62l-71.24-91.42h-17.81c1.48,2.97,2.23,5.49,2.23,9.79v99.14c0,4.3-.74,6.83-2.23,9.79h19.59c-1.48-2.97-2.23-5.49-2.23-9.79v-82.96l71.83,92.75h15.73c-.45-2.97-.74-5.49-.74-9.79v-99.14c0-4.3.74-6.83,2.23-9.79Z"/>
+        <path d="M1134.65,1088.98h-20.48c1.48,2.97,2.23,5.49,2.23,9.79v99.14c0,4.3-.74,6.83-2.23,9.79h20.48c-1.48-2.97-2.23-5.49-2.23-9.79v-99.14c0-4.3.74-6.83,2.23-9.79Z"/>
+        <path d="M1240.07,1190.94c-5.34,2.08-11.58,2.97-18.7,2.97-29.53,0-48.53-19.74-48.53-45.56s18.7-45.56,48.53-45.56c7.12,0,13.5.74,18.7,2.38,6.53,2.08,10.09,4.75,13.95,8.61l-.45-20.63c-10.98-4.6-20.33-5.64-32.35-5.64-38.14,0-65.6,26.42-65.6,60.85s26.27,60.85,65.6,60.85c12.02,0,21.37-1.48,32.35-6.08l.59-21.67c-3.41,3.86-6.38,6.53-14.1,9.5Z"/>
+      </g>
+    </svg>
+    <div class="doc-meta">
+      <span class="pill">Donor screening questionnaire</span>
+      Form FDS-01 <span class="sep"></span> v2026.1
+    </div>
+  </header>
+
+  <div class="title-block">
+    <h1>Donor screening questionnaire</h1>
+    <p class="intro">
+      Thank you for considering becoming a faecal microbiota transplant (FMT) donor. The questions that follow are used to assess your <em>suitability</em> as a donor and to safeguard the recipient. Please answer every question honestly and completely. Your responses will be held in confidence in accordance with the <em>Privacy Act 1988</em> (Cth) and the Australian Privacy Principles.
+    </p>
+  </div>
+
+  <section>
+    <div class="section-head">
+      <span class="section-num">01</span>
+      <h2>Donor identification</h2>
+    </div>
+    <div class="grid cols-2">
+      <div class="field" style="grid-column: 1 / -1;"><label>Full legal name</label><input type="text" class="line"></div>
+      <div class="field"><label>Date of birth</label><input type="text" class="line"></div>
+      <div class="field"><label>Occupation</label><input type="text" class="line"></div>
+      <div class="field"><label>Weight</label><input type="text" class="line"></div>
+      <div class="field"><label>Height</label><input type="text" class="line"></div>
+      <div class="field"><label>Date of interview</label><input type="text" class="line"></div>
+      <div class="field"><label>Interviewer</label><input type="text" class="line"></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-head">
+      <span class="section-num">02</span>
+      <h2>Medical history</h2>
+    </div>
+
+    <div class="q">
+      <span class="num">1</span>
+      <div class="body">
+        <p class="question-text">Have you ever been diagnosed with HIV/AIDS, Human T-Lymphoma Virus (HTLV), Syphilis, Hepatitis A, Hepatitis B or Hepatitis C?</p>
+        <div class="yn-row">
+          <label class="yn-option"><input type="checkbox" class="yn-box">Yes</label>
+          <label class="yn-option"><input type="checkbox" class="yn-box">No</label>
+          <span class="yn-detail-label">Details</span>
+          <input type="text" class="yn-detail">
+        </div>
+      </div>
+    </div>
+
+    <div class="q">
+      <span class="num">2</span>
+      <div class="body">
+        <p class="question-text">History of any autoimmune disease?</p>
+        <div class="yn-row">
+          <label class="yn-option"><input type="checkbox" class="yn-box">Yes</label>
+          <label class="yn-option"><input type="checkbox" class="yn-box">No</label>
+          <span class="yn-detail-label">Details</span>
+          <input type="text" class="yn-detail">
+        </div>
+      </div>
+    </div>
+
+    <div class="q">
+      <span class="num">3</span>
+      <div class="body">
+        <p class="question-text">History of a metabolic syndrome or diabetes?</p>
+        <div class="yn-row">
+          <label class="yn-option"><input type="checkbox" class="yn-box">Yes</label>
+          <label class="yn-option"><input type="checkbox" class="yn-box">No</label>
+          <span class="yn-detail-label">Details</span>
+          <input type="text" class="yn-detail">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="footer">
+    <div>The Microbiome Clinic <span class="mono-dot"></span> themicrobiomeclinic.com.au</div>
+    <div>Page 1 of 6 <span class="mono-dot"></span> continued overleaf</div>
+  </div>
+</div>
+
+<!-- ================= PAGE 2 ================= -->
+<div class="page">
+
+  <header class="header-slim">
+    <svg class="logo-mini" viewBox="720 780 560 440" xmlns="http://www.w3.org/2000/svg" aria-label="The Microbiome Clinic">
+      <g fill="#5D5A49">
+        <path d="M851.45,802.09c-.15-4.3.74-6.83,3.71-9.79h-18.85l-36.36,74.8-36.95-74.8h-19.14c2.97,2.97,4.3,5.49,4.16,12.91l-2.37,96.02c-.15,4.3-.74,6.83-2.23,9.79h19.89c-1.48-2.97-2.37-5.49-2.23-9.79l1.63-73.02,31.31,63.52h11.43l30.87-63.81,1.78,73.31c.15,4.3-.74,6.83-2.23,9.79h20.18c-1.48-2.97-2.08-5.49-2.23-9.79l-2.37-99.14Z"/>
+        <path d="M904.99,792.29h-20.48c1.48,2.97,2.23,5.49,2.23,9.79v99.14c0,4.3-.74,6.83-2.23,9.79h20.48c-1.48-2.97-2.23-5.49-2.23-9.79v-99.14c0-4.3.74-6.83,2.23-9.79Z"/>
+        <path d="M1012.11,894.25c-5.34,2.08-11.58,2.97-18.7,2.97-29.53,0-48.53-19.74-48.53-45.56s18.7-45.56,48.53-45.56c7.12,0,13.51.74,18.7,2.38,6.53,2.08,10.09,4.75,13.95,8.61l-.45-20.63c-10.98-4.6-20.33-5.64-32.35-5.64-38.14,0-65.6,26.42-65.6,60.85s26.27,60.85,65.6,60.85c12.02,0,21.37-1.48,32.35-6.08l.59-21.67c-3.41,3.86-6.38,6.53-14.1,9.5Z"/>
+        <path d="M1128.13,900.04c-6.68-9.94-15.73-23.89-24.34-35.17-1.93-2.38-3.41-4.45-5.94-6.68,14.1-5.05,22.26-16.18,22.26-31.46,0-19-13.65-34.43-36.06-34.43h-34.28c1.48,2.97,2.23,5.49,2.23,9.79v99.14c0,4.3-.74,6.83-2.23,9.79h20.48c-1.48-2.97-2.23-5.49-2.23-9.79v-40.96c2.37,0,5.34.15,8.46,1.04,5.05,1.48,9.2,5.94,11.72,9.35,7.27,10.39,14.4,20.78,21.52,31.31,1.93,2.82,3.12,5.34,4.01,9.05h23.75c-3.71-3.12-6.08-6.23-9.35-10.98ZM1078.56,846.16c-3.71,0-6.83-.15-10.54-1.04v-37.84h12.91c14.99,0,22.41,8.46,22.41,19.59s-7.42,19.29-24.78,19.29Z"/>
+        <path d="M1203.04,790.81c-34.28,0-60.85,26.42-60.85,60.85s26.56,60.85,60.85,60.85,60.85-26.42,60.85-60.85-26.56-60.85-60.85-60.85ZM1202.89,897.07c-24.49,0-43.48-19.74-43.48-45.41s19-45.56,43.48-45.56,43.48,19.74,43.48,45.56-19,45.41-43.48,45.41Z"/>
+        <path d="M801.03,996.02c6.98-4.9,11.58-13.36,11.58-23.45,0-17.81-12.91-31.91-33.69-31.91h-33.24c1.48,2.97,2.23,5.49,2.23,9.79v99.14c0,4.3-.74,6.83-2.23,9.79h40.07c23.3,0,37.4-12.61,37.4-33.24,0-15.43-9.35-26.71-22.11-30.13ZM763.92,955.66h12.91c12.17,0,19.29,7.72,19.29,17.51,0,10.39-5.64,18.11-20.63,18.11h-11.58v-35.62ZM783.96,1044.26h-20.04v-37.99h19.29c15.43,0,23.15,8.9,23.15,19.59s-6.23,18.4-22.41,18.4Z"/>
+        <path d="M868.98,940.67h-20.48c1.48,2.97,2.23,5.49,2.23,9.79v99.14c0,4.3-.74,6.83-2.23,9.79h20.48c-1.48-2.97-2.23-5.49-2.23-9.79v-99.14c0-4.3.74-6.83,2.23-9.79Z"/>
+        <path d="M956.47,939.18c-34.28,0-60.85,26.42-60.85,60.85s26.56,60.85,60.85,60.85,60.85-26.42,60.85-60.85-26.56-60.85-60.85-60.85ZM956.32,1045.44c-24.49,0-43.48-19.74-43.48-45.41s19-45.56,43.48-45.56,43.48,19.74,43.48,45.56-19,45.41-43.48,45.41Z"/>
+        <path d="M1150.51,950.46c-.15-4.3.74-6.83,3.71-9.79h-18.85l-36.36,74.8-36.95-74.8h-19.14c2.97,2.97,4.3,5.49,4.16,12.91l-2.37,96.02c-.15,4.3-.74,6.83-2.23,9.79h19.89c-1.48-2.97-2.37-5.49-2.23-9.79l1.63-73.02,31.31,63.52h11.43l30.87-63.81,1.78,73.31c.15,4.3-.74,6.83-2.23,9.79h20.18c-1.48-2.97-2.08-5.49-2.23-9.79l-2.37-99.14Z"/>
+        <path d="M1204.66,1044.26v-37.7h33.69c4.3,0,6.83.74,9.79,2.23v-19.59c-2.97,1.48-5.49,2.23-9.79,2.23h-33.69v-35.62h32.5c6.08,0,9.5,1.19,12.91,3.12l-.74-18.25h-62.92c1.48,2.97,2.23,5.49,2.23,9.79v99.14c0,4.3-.74,6.83-2.23,9.79h64.26l4.16-18.25c-3.41,1.93-8.01,3.12-14.1,3.12h-36.06Z"/>
+        <path d="M820.56,1190.94c-5.34,2.08-11.58,2.97-18.7,2.97-29.53,0-48.53-19.74-48.53-45.56s18.7-45.56,48.53-45.56c7.12,0,13.5.74,18.7,2.38,6.53,2.08,10.09,4.75,13.95,8.61l-.45-20.63c-10.98-4.6-20.33-5.64-32.35-5.64-38.14,0-65.6,26.42-65.6,60.85s26.27,60.85,65.6,60.85c12.02,0,21.37-1.48,32.35-6.08l.59-21.67c-3.41,3.86-6.38,6.53-14.1,9.5Z"/>
+        <path d="M874.77,1192.57v-93.79c0-4.3.74-6.83,2.23-9.79h-20.48c1.48,2.97,2.23,5.49,2.23,9.79v99.14c0,4.3-.74,6.83-2.23,9.79h58.18l2.37-18.25c-3.41,1.93-6.83,3.12-12.91,3.12h-29.38Z"/>
+        <path d="M953.36,1088.98h-20.48c1.48,2.97,2.23,5.49,2.23,9.79v99.14c0,4.3-.74,6.83-2.23,9.79h20.48c-1.48-2.97-2.23-5.49-2.23-9.79v-99.14c0-4.3.74-6.83,2.23-9.79Z"/>
+        <path d="M1086.97,1088.98h-19.59c1.48,2.97,2.23,5.49,2.23,9.79v81.62l-71.24-91.42h-17.81c1.48,2.97,2.23,5.49,2.23,9.79v99.14c0,4.3-.74,6.83-2.23,9.79h19.59c-1.48-2.97-2.23-5.49-2.23-9.79v-82.96l71.83,92.75h15.73c-.45-2.97-.74-5.49-.74-9.79v-99.14c0-4.3.74-6.83,2.23-9.79Z"/>
+        <path d="M1134.65,1088.98h-20.48c1.48,2.97,2.23,5.49,2.23,9.79v99.14c0,4.3-.74,6.83-2.23,9.79h20.48c-1.48-2.97-2.23-5.49-2.23-9.79v-99.14c0-4.3.74-6.83,2.23-9.79Z"/>
+        <path d="M1240.07,1190.94c-5.34,2.08-11.58,2.97-18.7,2.97-29.53,0-48.53-19.74-48.53-45.56s18.7-45.56,48.53-45.56c7.12,0,13.5.74,18.7,2.38,6.53,2.08,10.09,4.75,13.95,8.61l-.45-20.63c-10.98-4.6-20.33-5.64-32.35-5.64-38.14,0-65.6,26.42-65.6,60.85s26.27,60.85,65.6,60.85c12.02,0,21.37-1.48,32.35-6.08l.59-21.67c-3.41,3.86-6.38,6.53-14.1,9.5Z"/>
+      </g>
+    </svg>
+    <div class="meta">
+      <div class="continued">Donor screening questionnaire <span style="color: var(--brown-60);">— continued</span></div>
+      <div>Form FDS-01 &nbsp;·&nbsp; v2026.1</div>
+    </div>
+  </header>
+
+  <section>
+    <div class="section-head">
+      <span class="section-num">02</span>
+      <h2>Medical history <span class="section-cont">continued</span></h2>
+    </div>
+
+    <div class="q">
+      <span class="num">4</span>
+      <div class="body">
+        <p class="question-text">History of any mental health or personality disorders including anxiety, depression, Bi-Polar or Schizophrenia?</p>
+        <div class="yn-row">
+          <label class="yn-option"><input type="checkbox" class="yn-box">Yes</label>
+          <label class="yn-option"><input type="checkbox" class="yn-box">No</label>
+          <span class="yn-detail-label">Details</span>
+          <input type="text" class="yn-detail">
+        </div>
+      </div>
+    </div>
+
+    <div class="q">
+      <span class="num">5</span>
+      <div class="body">
+        <p class="question-text">Have you ever been a recipient of viable, non-human animal cells or tissues?</p>
+        <div class="yn-row">
+          <label class="yn-option"><input type="checkbox" class="yn-box">Yes</label>
+          <label class="yn-option"><input type="checkbox" class="yn-box">No</label>
+          <span class="yn-detail-label">Details</span>
+          <input type="text" class="yn-detail">
+        </div>
+      </div>
+    </div>
+
+    <div class="q">
+      <span class="num">6</span>
+      <div class="body">
+        <p class="question-text">Have you ever received human pituitary-derived hormone?</p>
+        <div class="yn-row">
+          <label class="yn-option"><input type="checkbox" class="yn-box">Yes</label>
+          <label class="yn-option"><input type="checkbox" class="yn-box">No</label>
+          <span class="yn-detail-label">Details</span>
+          <input type="text" class="yn-detail">
+        </div>
+      </div>
+    </div>
+
+    <div class="q">
+      <span class="num">7</span>
+      <div class="body">
+        <p class="question-text">Are you at risk of <em>Prion Disease</em>, e.g. Creutzfeldt-Jakob Disease (CJD), including:</p>
+        <ul class="bullets">
+          <li>Genetic exposure</li>
+          <li>Living in the UK for 6 months or more between 1<sup>st</sup> January 1980 and 31<sup>st</sup> December 1996</li>
+          <li>Receiving a transfusion of blood or injection of blood components in the UK after 1<sup>st</sup> January 1980</li>
+        </ul>
+        <div class="yn-row">
+          <label class="yn-option"><input type="checkbox" class="yn-box">Yes</label>
+          <label class="yn-option"><input type="checkbox" class="yn-box">No</label>
+          <span class="yn-detail-label">Details</span>
+          <input type="text" class="yn-detail">
+        </div>
+      </div>
+    </div>
+
+    <div class="q">
+      <span class="num">8</span>
+      <div class="body">
+        <p class="question-text">History of functional gastrointestinal disorders including Crohn's disease, ulcerative colitis, IBS, constipation, bloating or diarrhoea?</p>
+        <div class="yn-row">
+          <label class="yn-option"><input type="checkbox" class="yn-box">Yes</label>
+          <label class="yn-option"><input type="checkbox" class="yn-box">No</label>
+          <span class="yn-detail-label">Details</span>
+          <input type="text" class="yn-detail">
+        </div>
+      </div>
+    </div>
+
+    <div class="q">
+      <span class="num">9</span>
+      <div class="body">
+        <p class="question-text">History of gastrointestinal cancer?</p>
+        <div class="yn-row">
+          <label class="yn-option"><input type="checkbox" class="yn-box">Yes</label>
+          <label class="yn-option"><input type="checkbox" class="yn-box">No</label>
+          <span class="yn-detail-label">Details</span>
+          <input type="text" class="yn-detail">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="footer">
+    <div>The Microbiome Clinic <span class="mono-dot"></span> themicrobiomeclinic.com.au</div>
+    <div>Page 2 of 6 <span class="mono-dot"></span> continued overleaf</div>
+  </div>
+</div>
+
+<!-- ================= PAGE 3 ================= -->
+<div class="page">
+
+  <header class="header-slim">
+    <svg class="logo-mini" viewBox="720 780 560 440" xmlns="http://www.w3.org/2000/svg" aria-label="The Microbiome Clinic">
+      <g fill="#5D5A49">
+        <path d="M851.45,802.09c-.15-4.3.74-6.83,3.71-9.79h-18.85l-36.36,74.8-36.95-74.8h-19.14c2.97,2.97,4.3,5.49,4.16,12.91l-2.37,96.02c-.15,4.3-.74,6.83-2.23,9.79h19.89c-1.48-2.97-2.37-5.49-2.23-9.79l1.63-73.02,31.31,63.52h11.43l30.87-63.81,1.78,73.31c.15,4.3-.74,6.83-2.23,9.79h20.18c-1.48-2.97-2.08-5.49-2.23-9.79l-2.37-99.14Z"/>
+        <path d="M904.99,792.29h-20.48c1.48,2.97,2.23,5.49,2.23,9.79v99.14c0,4.3-.74,6.83-2.23,9.79h20.48c-1.48-2.97-2.23-5.49-2.23-9.79v-99.14c0-4.3.74-6.83,2.23-9.79Z"/>
+        <path d="M1012.11,894.25c-5.34,2.08-11.58,2.97-18.7,2.97-29.53,0-48.53-19.74-48.53-45.56s18.7-45.56,48.53-45.56c7.12,0,13.51.74,18.7,2.38,6.53,2.08,10.09,4.75,13.95,8.61l-.45-20.63c-10.98-4.6-20.33-5.64-32.35-5.64-38.14,0-65.6,26.42-65.6,60.85s26.27,60.85,65.6,60.85c12.02,0,21.37-1.48,32.35-6.08l.59-21.67c-3.41,3.86-6.38,6.53-14.1,9.5Z"/>
+        <path d="M1128.13,900.04c-6.68-9.94-15.73-23.89-24.34-35.17-1.93-2.38-3.41-4.45-5.94-6.68,14.1-5.05,22.26-16.18,22.26-31.46,0-19-13.65-34.43-36.06-34.43h-34.28c1.48,2.97,2.23,5.49,2.23,9.79v99.14c0,4.3-.74,6.83-2.23,9.79h20.48c-1.48-2.97-2.23-5.49-2.23-9.79v-40.96c2.37,0,5.34.15,8.46,1.04,5.05,1.48,9.2,5.94,11.72,9.35,7.27,10.39,14.4,20.78,21.52,31.31,1.93,2.82,3.12,5.34,4.01,9.05h23.75c-3.71-3.12-6.08-6.23-9.35-10.98ZM1078.56,846.16c-3.71,0-6.83-.15-10.54-1.04v-37.84h12.91c14.99,0,22.41,8.46,22.41,19.59s-7.42,19.29-24.78,19.29Z"/>
+        <path d="M1203.04,790.81c-34.28,0-60.85,26.42-60.85,60.85s26.56,60.85,60.85,60.85,60.85-26.42,60.85-60.85-26.56-60.85-60.85-60.85ZM1202.89,897.07c-24.49,0-43.48-19.74-43.48-45.41s19-45.56,43.48-45.56,43.48,19.74,43.48,45.56-19,45.41-43.48,45.41Z"/>
+        <path d="M801.03,996.02c6.98-4.9,11.58-13.36,11.58-23.45,0-17.81-12.91-31.91-33.69-31.91h-33.24c1.48,2.97,2.23,5.49,2.23,9.79v99.14c0,4.3-.74,6.83-2.23,9.79h40.07c23.3,0,37.4-12.61,37.4-33.24,0-15.43-9.35-26.71-22.11-30.13ZM763.92,955.66h12.91c12.17,0,19.29,7.72,19.29,17.51,0,10.39-5.64,18.11-20.63,18.11h-11.58v-35.62ZM783.96,1044.26h-20.04v-37.99h19.29c15.43,0,23.15,8.9,23.15,19.59s-6.23,18.4-22.41,18.4Z"/>
+        <path d="M868.98,940.67h-20.48c1.48,2.97,2.23,5.49,2.23,9.79v99.14c0,4.3-.74,6.83-2.23,9.79h20.48c-1.48-2.97-2.23-5.49-2.23-9.79v-99.14c0-4.3.74-6.83,2.23-9.79Z"/>
+        <path d="M956.47,939.18c-34.28,0-60.85,26.42-60.85,60.85s26.56,60.85,60.85,60.85,60.85-26.42,60.85-60.85-26.56-60.85-60.85-60.85ZM956.32,1045.44c-24.49,0-43.48-19.74-43.48-45.41s19-45.56,43.48-45.56,43.48,19.74,43.48,45.56-19,45.41-43.48,45.41Z"/>
+        <path d="M1150.51,950.46c-.15-4.3.74-6.83,3.71-9.79h-18.85l-36.36,74.8-36.95-74.8h-19.14c2.97,2.97,4.3,5.49,4.16,12.91l-2.37,96.02c-.15,4.3-.74,6.83-2.23,9.79h19.89c-1.48-2.97-2.37-5.49-2.23-9.79l1.63-73.02,31.31,63.52h11.43l30.87-63.81,1.78,73.31c.15,4.3-.74,6.83-2.23,9.79h20.18c-1.48-2.97-2.08-5.49-2.23-9.79l-2.37-99.14Z"/>
+        <path d="M1204.66,1044.26v-37.7h33.69c4.3,0,6.83.74,9.79,2.23v-19.59c-2.97,1.48-5.49,2.23-9.79,2.23h-33.69v-35.62h32.5c6.08,0,9.5,1.19,12.91,3.12l-.74-18.25h-62.92c1.48,2.97,2.23,5.49,2.23,9.79v99.14c0,4.3-.74,6.83-2.23,9.79h64.26l4.16-18.25c-3.41,1.93-8.01,3.12-14.1,3.12h-36.06Z"/>
+        <path d="M820.56,1190.94c-5.34,2.08-11.58,2.97-18.7,2.97-29.53,0-48.53-19.74-48.53-45.56s18.7-45.56,48.53-45.56c7.12,0,13.5.74,18.7,2.38,6.53,2.08,10.09,4.75,13.95,8.61l-.45-20.63c-10.98-4.6-20.33-5.64-32.35-5.64-38.14,0-65.6,26.42-65.6,60.85s26.27,60.85,65.6,60.85c12.02,0,21.37-1.48,32.35-6.08l.59-21.67c-3.41,3.86-6.38,6.53-14.1,9.5Z"/>
+        <path d="M874.77,1192.57v-93.79c0-4.3.74-6.83,2.23-9.79h-20.48c1.48,2.97,2.23,5.49,2.23,9.79v99.14c0,4.3-.74,6.83-2.23,9.79h58.18l2.37-18.25c-3.41,1.93-6.83,3.12-12.91,3.12h-29.38Z"/>
+        <path d="M953.36,1088.98h-20.48c1.48,2.97,2.23,5.49,2.23,9.79v99.14c0,4.3-.74,6.83-2.23,9.79h20.48c-1.48-2.97-2.23-5.49-2.23-9.79v-99.14c0-4.3.74-6.83,2.23-9.79Z"/>
+        <path d="M1086.97,1088.98h-19.59c1.48,2.97,2.23,5.49,2.23,9.79v81.62l-71.24-91.42h-17.81c1.48,2.97,2.23,5.49,2.23,9.79v99.14c0,4.3-.74,6.83-2.23,9.79h19.59c-1.48-2.97-2.23-5.49-2.23-9.79v-82.96l71.83,92.75h15.73c-.45-2.97-.74-5.49-.74-9.79v-99.14c0-4.3.74-6.83,2.23-9.79Z"/>
+        <path d="M1134.65,1088.98h-20.48c1.48,2.97,2.23,5.49,2.23,9.79v99.14c0,4.3-.74,6.83-2.23,9.79h20.48c-1.48-2.97-2.23-5.49-2.23-9.79v-99.14c0-4.3.74-6.83,2.23-9.79Z"/>
+        <path d="M1240.07,1190.94c-5.34,2.08-11.58,2.97-18.7,2.97-29.53,0-48.53-19.74-48.53-45.56s18.7-45.56,48.53-45.56c7.12,0,13.5.74,18.7,2.38,6.53,2.08,10.09,4.75,13.95,8.61l-.45-20.63c-10.98-4.6-20.33-5.64-32.35-5.64-38.14,0-65.6,26.42-65.6,60.85s26.27,60.85,65.6,60.85c12.02,0,21.37-1.48,32.35-6.08l.59-21.67c-3.41,3.86-6.38,6.53-14.1,9.5Z"/>
+      </g>
+    </svg>
+    <div class="meta">
+      <div class="continued">Donor screening questionnaire <span style="color: var(--brown-60);">— continued</span></div>
+      <div>Form FDS-01 &nbsp;·&nbsp; v2026.1</div>
+    </div>
+  </header>
+
+  <section>
+    <div class="section-head">
+      <span class="section-num">02</span>
+      <h2>Medical history <span class="section-cont">continued</span></h2>
+    </div>
+
+    <div class="q">
+      <span class="num">10</span>
+      <div class="body">
+        <p class="question-text">Known genetic polyp condition?</p>
+        <div class="yn-row">
+          <label class="yn-option"><input type="checkbox" class="yn-box">Yes</label>
+          <label class="yn-option"><input type="checkbox" class="yn-box">No</label>
+          <span class="yn-detail-label">Details</span>
+          <input type="text" class="yn-detail">
+        </div>
+      </div>
+    </div>
+
+    <div class="q">
+      <span class="num">11</span>
+      <div class="body">
+        <p class="question-text">Major gastrointestinal surgery?</p>
+        <div class="yn-row">
+          <label class="yn-option"><input type="checkbox" class="yn-box">Yes</label>
+          <label class="yn-option"><input type="checkbox" class="yn-box">No</label>
+          <span class="yn-detail-label">Details</span>
+          <input type="text" class="yn-detail">
+        </div>
+      </div>
+    </div>
+
+    <div class="q">
+      <span class="num">12</span>
+      <div class="body">
+        <p class="question-text">When did you last take an antibiotic or immunosuppressant?</p>
+        <input type="text" class="answer-line">
+      </div>
+    </div>
+
+    <div class="q">
+      <span class="num">13</span>
+      <div class="body">
+        <p class="question-text">Do you take Proton Pump Inhibitors (PPIs)?</p>
+        <div class="yn-row">
+          <label class="yn-option"><input type="checkbox" class="yn-box">Yes</label>
+          <label class="yn-option"><input type="checkbox" class="yn-box">No</label>
+          <span class="yn-detail-label">Details</span>
+          <input type="text" class="yn-detail">
+        </div>
+      </div>
+    </div>
+
+    <div class="q">
+      <span class="num">14</span>
+      <div class="body">
+        <p class="question-text">Have you recently been hospitalised or in a long-term care facility?</p>
+        <div class="yn-row">
+          <label class="yn-option"><input type="checkbox" class="yn-box">Yes</label>
+          <label class="yn-option"><input type="checkbox" class="yn-box">No</label>
+          <span class="yn-detail-label">Details</span>
+          <input type="text" class="yn-detail">
+        </div>
+      </div>
+    </div>
+
+    <div class="q">
+      <span class="num">15</span>
+      <div class="body">
+        <p class="question-text">Have you recently had a live vaccine?</p>
+        <div class="yn-row" style="margin-bottom: 2.5mm;">
+          <label class="yn-option"><input type="checkbox" class="yn-box">Yes</label>
+          <label class="yn-option"><input type="checkbox" class="yn-box">No</label>
+          <span class="yn-detail-label"><em>If yes,</em> tick which below</span>
+        </div>
+        <div class="vaccines">
+          <div class="check"><input type="checkbox" class="box">Yellow fever</div>
+          <div class="check"><input type="checkbox" class="box">Measles / Mumps / Rubella</div>
+          <div class="check"><input type="checkbox" class="box">Japanese Encephalitis</div>
+          <div class="check"><input type="checkbox" class="box">Rotavirus</div>
+          <div class="check"><input type="checkbox" class="box">Oral Typhoid</div>
+          <div class="check"><input type="checkbox" class="box">Varicella</div>
+          <div class="check"><input type="checkbox" class="box">Zoster</div>
+          <div class="check"><input type="checkbox" class="box">Other</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="footer">
+    <div>The Microbiome Clinic <span class="mono-dot"></span> themicrobiomeclinic.com.au</div>
+    <div>Page 3 of 6 <span class="mono-dot"></span> continued overleaf</div>
+  </div>
+</div>
+
+<!-- ================= PAGE 4 ================= -->
+<div class="page">
+
+  <header class="header-slim">
+    <svg class="logo-mini" viewBox="720 780 560 440" xmlns="http://www.w3.org/2000/svg" aria-label="The Microbiome Clinic">
+      <g fill="#5D5A49">
+        <path d="M851.45,802.09c-.15-4.3.74-6.83,3.71-9.79h-18.85l-36.36,74.8-36.95-74.8h-19.14c2.97,2.97,4.3,5.49,4.16,12.91l-2.37,96.02c-.15,4.3-.74,6.83-2.23,9.79h19.89c-1.48-2.97-2.37-5.49-2.23-9.79l1.63-73.02,31.31,63.52h11.43l30.87-63.81,1.78,73.31c.15,4.3-.74,6.83-2.23,9.79h20.18c-1.48-2.97-2.08-5.49-2.23-9.79l-2.37-99.14Z"/>
+        <path d="M904.99,792.29h-20.48c1.48,2.97,2.23,5.49,2.23,9.79v99.14c0,4.3-.74,6.83-2.23,9.79h20.48c-1.48-2.97-2.23-5.49-2.23-9.79v-99.14c0-4.3.74-6.83,2.23-9.79Z"/>
+        <path d="M1012.11,894.25c-5.34,2.08-11.58,2.97-18.7,2.97-29.53,0-48.53-19.74-48.53-45.56s18.7-45.56,48.53-45.56c7.12,0,13.51.74,18.7,2.38,6.53,2.08,10.09,4.75,13.95,8.61l-.45-20.63c-10.98-4.6-20.33-5.64-32.35-5.64-38.14,0-65.6,26.42-65.6,60.85s26.27,60.85,65.6,60.85c12.02,0,21.37-1.48,32.35-6.08l.59-21.67c-3.41,3.86-6.38,6.53-14.1,9.5Z"/>
+        <path d="M1128.13,900.04c-6.68-9.94-15.73-23.89-24.34-35.17-1.93-2.38-3.41-4.45-5.94-6.68,14.1-5.05,22.26-16.18,22.26-31.46,0-19-13.65-34.43-36.06-34.43h-34.28c1.48,2.97,2.23,5.49,2.23,9.79v99.14c0,4.3-.74,6.83-2.23,9.79h20.48c-1.48-2.97-2.23-5.49-2.23-9.79v-40.96c2.37,0,5.34.15,8.46,1.04,5.05,1.48,9.2,5.94,11.72,9.35,7.27,10.39,14.4,20.78,21.52,31.31,1.93,2.82,3.12,5.34,4.01,9.05h23.75c-3.71-3.12-6.08-6.23-9.35-10.98ZM1078.56,846.16c-3.71,0-6.83-.15-10.54-1.04v-37.84h12.91c14.99,0,22.41,8.46,22.41,19.59s-7.42,19.29-24.78,19.29Z"/>
+        <path d="M1203.04,790.81c-34.28,0-60.85,26.42-60.85,60.85s26.56,60.85,60.85,60.85,60.85-26.42,60.85-60.85-26.56-60.85-60.85-60.85ZM1202.89,897.07c-24.49,0-43.48-19.74-43.48-45.41s19-45.56,43.48-45.56,43.48,19.74,43.48,45.56-19,45.41-43.48,45.41Z"/>
+        <path d="M801.03,996.02c6.98-4.9,11.58-13.36,11.58-23.45,0-17.81-12.91-31.91-33.69-31.91h-33.24c1.48,2.97,2.23,5.49,2.23,9.79v99.14c0,4.3-.74,6.83-2.23,9.79h40.07c23.3,0,37.4-12.61,37.4-33.24,0-15.43-9.35-26.71-22.11-30.13ZM763.92,955.66h12.91c12.17,0,19.29,7.72,19.29,17.51,0,10.39-5.64,18.11-20.63,18.11h-11.58v-35.62ZM783.96,1044.26h-20.04v-37.99h19.29c15.43,0,23.15,8.9,23.15,19.59s-6.23,18.4-22.41,18.4Z"/>
+        <path d="M868.98,940.67h-20.48c1.48,2.97,2.23,5.49,2.23,9.79v99.14c0,4.3-.74,6.83-2.23,9.79h20.48c-1.48-2.97-2.23-5.49-2.23-9.79v-99.14c0-4.3.74-6.83,2.23-9.79Z"/>
+        <path d="M956.47,939.18c-34.28,0-60.85,26.42-60.85,60.85s26.56,60.85,60.85,60.85,60.85-26.42,60.85-60.85-26.56-60.85-60.85-60.85ZM956.32,1045.44c-24.49,0-43.48-19.74-43.48-45.41s19-45.56,43.48-45.56,43.48,19.74,43.48,45.56-19,45.41-43.48,45.41Z"/>
+        <path d="M1150.51,950.46c-.15-4.3.74-6.83,3.71-9.79h-18.85l-36.36,74.8-36.95-74.8h-19.14c2.97,2.97,4.3,5.49,4.16,12.91l-2.37,96.02c-.15,4.3-.74,6.83-2.23,9.79h19.89c-1.48-2.97-2.37-5.49-2.23-9.79l1.63-73.02,31.31,63.52h11.43l30.87-63.81,1.78,73.31c.15,4.3-.74,6.83-2.23,9.79h20.18c-1.48-2.97-2.08-5.49-2.23-9.79l-2.37-99.14Z"/>
+        <path d="M1204.66,1044.26v-37.7h33.69c4.3,0,6.83.74,9.79,2.23v-19.59c-2.97,1.48-5.49,2.23-9.79,2.23h-33.69v-35.62h32.5c6.08,0,9.5,1.19,12.91,3.12l-.74-18.25h-62.92c1.48,2.97,2.23,5.49,2.23,9.79v99.14c0,4.3-.74,6.83-2.23,9.79h64.26l4.16-18.25c-3.41,1.93-8.01,3.12-14.1,3.12h-36.06Z"/>
+        <path d="M820.56,1190.94c-5.34,2.08-11.58,2.97-18.7,2.97-29.53,0-48.53-19.74-48.53-45.56s18.7-45.56,48.53-45.56c7.12,0,13.5.74,18.7,2.38,6.53,2.08,10.09,4.75,13.95,8.61l-.45-20.63c-10.98-4.6-20.33-5.64-32.35-5.64-38.14,0-65.6,26.42-65.6,60.85s26.27,60.85,65.6,60.85c12.02,0,21.37-1.48,32.35-6.08l.59-21.67c-3.41,3.86-6.38,6.53-14.1,9.5Z"/>
+        <path d="M874.77,1192.57v-93.79c0-4.3.74-6.83,2.23-9.79h-20.48c1.48,2.97,2.23,5.49,2.23,9.79v99.14c0,4.3-.74,6.83-2.23,9.79h58.18l2.37-18.25c-3.41,1.93-6.83,3.12-12.91,3.12h-29.38Z"/>
+        <path d="M953.36,1088.98h-20.48c1.48,2.97,2.23,5.49,2.23,9.79v99.14c0,4.3-.74,6.83-2.23,9.79h20.48c-1.48-2.97-2.23-5.49-2.23-9.79v-99.14c0-4.3.74-6.83,2.23-9.79Z"/>
+        <path d="M1086.97,1088.98h-19.59c1.48,2.97,2.23,5.49,2.23,9.79v81.62l-71.24-91.42h-17.81c1.48,2.97,2.23,5.49,2.23,9.79v99.14c0,4.3-.74,6.83-2.23,9.79h19.59c-1.48-2.97-2.23-5.49-2.23-9.79v-82.96l71.83,92.75h15.73c-.45-2.97-.74-5.49-.74-9.79v-99.14c0-4.3.74-6.83,2.23-9.79Z"/>
+        <path d="M1134.65,1088.98h-20.48c1.48,2.97,2.23,5.49,2.23,9.79v99.14c0,4.3-.74,6.83-2.23,9.79h20.48c-1.48-2.97-2.23-5.49-2.23-9.79v-99.14c0-4.3.74-6.83,2.23-9.79Z"/>
+        <path d="M1240.07,1190.94c-5.34,2.08-11.58,2.97-18.7,2.97-29.53,0-48.53-19.74-48.53-45.56s18.7-45.56,48.53-45.56c7.12,0,13.5.74,18.7,2.38,6.53,2.08,10.09,4.75,13.95,8.61l-.45-20.63c-10.98-4.6-20.33-5.64-32.35-5.64-38.14,0-65.6,26.42-65.6,60.85s26.27,60.85,65.6,60.85c12.02,0,21.37-1.48,32.35-6.08l.59-21.67c-3.41,3.86-6.38,6.53-14.1,9.5Z"/>
+      </g>
+    </svg>
+    <div class="meta">
+      <div class="continued">Donor screening questionnaire <span style="color: var(--brown-60);">— continued</span></div>
+      <div>Form FDS-01 &nbsp;·&nbsp; v2026.1</div>
+    </div>
+  </header>
+
+  <section>
+    <div class="section-head">
+      <span class="section-num">02</span>
+      <h2>Medical history <span class="section-cont">continued</span></h2>
+    </div>
+
+    <div class="q">
+      <span class="num">16</span>
+      <div class="body">
+        <p class="question-text">Have you recently travelled overseas?</p>
+        <div class="yn-row">
+          <label class="yn-option"><input type="checkbox" class="yn-box">Yes</label>
+          <label class="yn-option"><input type="checkbox" class="yn-box">No</label>
+          <span class="yn-detail-label">Details</span>
+          <input type="text" class="yn-detail">
+        </div>
+        <div class="sub-row cols-2">
+          <span class="sub-label">Return date and location travelled</span>
+          <input type="text" class="sub-line">
+        </div>
+      </div>
+    </div>
+
+    <div class="q">
+      <span class="num">17</span>
+      <div class="body">
+        <p class="question-text">In the past 6 months, have you had any of the following?</p>
+        <div class="sub-q-stack">
+          <div class="sub-q">
+            <div class="sub-q-label">Mucosal splash with blood or other bodily fluids?</div>
+            <div class="yn-row" style="margin: 0;">
+              <label class="yn-option"><input type="checkbox" class="yn-box">Yes</label>
+              <label class="yn-option"><input type="checkbox" class="yn-box">No</label>
+            </div>
+          </div>
+          <div class="sub-q">
+            <div class="sub-q-label">Needle stick injury?</div>
+            <div class="yn-row" style="margin: 0;">
+              <label class="yn-option"><input type="checkbox" class="yn-box">Yes</label>
+              <label class="yn-option"><input type="checkbox" class="yn-box">No</label>
+            </div>
+          </div>
+          <div class="sub-q">
+            <div class="sub-q-label">Tattoo?</div>
+            <div class="yn-row" style="margin: 0;">
+              <label class="yn-option"><input type="checkbox" class="yn-box">Yes</label>
+              <label class="yn-option"><input type="checkbox" class="yn-box">No</label>
+            </div>
+          </div>
+          <div class="sub-q">
+            <div class="sub-q-label">Body piercing?</div>
+            <div class="yn-row" style="margin: 0;">
+              <label class="yn-option"><input type="checkbox" class="yn-box">Yes</label>
+              <label class="yn-option"><input type="checkbox" class="yn-box">No</label>
+            </div>
+          </div>
+          <div class="sub-q">
+            <div class="sub-q-label">Acupuncture <em>not</em> using sterile single-use needles?</div>
+            <div class="yn-row" style="margin: 0;">
+              <label class="yn-option"><input type="checkbox" class="yn-box">Yes</label>
+              <label class="yn-option"><input type="checkbox" class="yn-box">No</label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="footer">
+    <div>The Microbiome Clinic <span class="mono-dot"></span> themicrobiomeclinic.com.au</div>
+    <div>Page 4 of 6 <span class="mono-dot"></span> continued overleaf</div>
+  </div>
+</div>
+
+<!-- ================= PAGE 5 ================= -->
+<div class="page">
+
+  <header class="header-slim">
+    <svg class="logo-mini" viewBox="720 780 560 440" xmlns="http://www.w3.org/2000/svg" aria-label="The Microbiome Clinic">
+      <g fill="#5D5A49">
+        <path d="M851.45,802.09c-.15-4.3.74-6.83,3.71-9.79h-18.85l-36.36,74.8-36.95-74.8h-19.14c2.97,2.97,4.3,5.49,4.16,12.91l-2.37,96.02c-.15,4.3-.74,6.83-2.23,9.79h19.89c-1.48-2.97-2.37-5.49-2.23-9.79l1.63-73.02,31.31,63.52h11.43l30.87-63.81,1.78,73.31c.15,4.3-.74,6.83-2.23,9.79h20.18c-1.48-2.97-2.08-5.49-2.23-9.79l-2.37-99.14Z"/>
+        <path d="M904.99,792.29h-20.48c1.48,2.97,2.23,5.49,2.23,9.79v99.14c0,4.3-.74,6.83-2.23,9.79h20.48c-1.48-2.97-2.23-5.49-2.23-9.79v-99.14c0-4.3.74-6.83,2.23-9.79Z"/>
+        <path d="M1012.11,894.25c-5.34,2.08-11.58,2.97-18.7,2.97-29.53,0-48.53-19.74-48.53-45.56s18.7-45.56,48.53-45.56c7.12,0,13.51.74,18.7,2.38,6.53,2.08,10.09,4.75,13.95,8.61l-.45-20.63c-10.98-4.6-20.33-5.64-32.35-5.64-38.14,0-65.6,26.42-65.6,60.85s26.27,60.85,65.6,60.85c12.02,0,21.37-1.48,32.35-6.08l.59-21.67c-3.41,3.86-6.38,6.53-14.1,9.5Z"/>
+        <path d="M1128.13,900.04c-6.68-9.94-15.73-23.89-24.34-35.17-1.93-2.38-3.41-4.45-5.94-6.68,14.1-5.05,22.26-16.18,22.26-31.46,0-19-13.65-34.43-36.06-34.43h-34.28c1.48,2.97,2.23,5.49,2.23,9.79v99.14c0,4.3-.74,6.83-2.23,9.79h20.48c-1.48-2.97-2.23-5.49-2.23-9.79v-40.96c2.37,0,5.34.15,8.46,1.04,5.05,1.48,9.2,5.94,11.72,9.35,7.27,10.39,14.4,20.78,21.52,31.31,1.93,2.82,3.12,5.34,4.01,9.05h23.75c-3.71-3.12-6.08-6.23-9.35-10.98ZM1078.56,846.16c-3.71,0-6.83-.15-10.54-1.04v-37.84h12.91c14.99,0,22.41,8.46,22.41,19.59s-7.42,19.29-24.78,19.29Z"/>
+        <path d="M1203.04,790.81c-34.28,0-60.85,26.42-60.85,60.85s26.56,60.85,60.85,60.85,60.85-26.42,60.85-60.85-26.56-60.85-60.85-60.85ZM1202.89,897.07c-24.49,0-43.48-19.74-43.48-45.41s19-45.56,43.48-45.56,43.48,19.74,43.48,45.56-19,45.41-43.48,45.41Z"/>
+        <path d="M801.03,996.02c6.98-4.9,11.58-13.36,11.58-23.45,0-17.81-12.91-31.91-33.69-31.91h-33.24c1.48,2.97,2.23,5.49,2.23,9.79v99.14c0,4.3-.74,6.83-2.23,9.79h40.07c23.3,0,37.4-12.61,37.4-33.24,0-15.43-9.35-26.71-22.11-30.13ZM763.92,955.66h12.91c12.17,0,19.29,7.72,19.29,17.51,0,10.39-5.64,18.11-20.63,18.11h-11.58v-35.62ZM783.96,1044.26h-20.04v-37.99h19.29c15.43,0,23.15,8.9,23.15,19.59s-6.23,18.4-22.41,18.4Z"/>
+        <path d="M868.98,940.67h-20.48c1.48,2.97,2.23,5.49,2.23,9.79v99.14c0,4.3-.74,6.83-2.23,9.79h20.48c-1.48-2.97-2.23-5.49-2.23-9.79v-99.14c0-4.3.74-6.83,2.23-9.79Z"/>
+        <path d="M956.47,939.18c-34.28,0-60.85,26.42-60.85,60.85s26.56,60.85,60.85,60.85,60.85-26.42,60.85-60.85-26.56-60.85-60.85-60.85ZM956.32,1045.44c-24.49,0-43.48-19.74-43.48-45.41s19-45.56,43.48-45.56,43.48,19.74,43.48,45.56-19,45.41-43.48,45.41Z"/>
+        <path d="M1150.51,950.46c-.15-4.3.74-6.83,3.71-9.79h-18.85l-36.36,74.8-36.95-74.8h-19.14c2.97,2.97,4.3,5.49,4.16,12.91l-2.37,96.02c-.15,4.3-.74,6.83-2.23,9.79h19.89c-1.48-2.97-2.37-5.49-2.23-9.79l1.63-73.02,31.31,63.52h11.43l30.87-63.81,1.78,73.31c.15,4.3-.74,6.83-2.23,9.79h20.18c-1.48-2.97-2.08-5.49-2.23-9.79l-2.37-99.14Z"/>
+        <path d="M1204.66,1044.26v-37.7h33.69c4.3,0,6.83.74,9.79,2.23v-19.59c-2.97,1.48-5.49,2.23-9.79,2.23h-33.69v-35.62h32.5c6.08,0,9.5,1.19,12.91,3.12l-.74-18.25h-62.92c1.48,2.97,2.23,5.49,2.23,9.79v99.14c0,4.3-.74,6.83-2.23,9.79h64.26l4.16-18.25c-3.41,1.93-8.01,3.12-14.1,3.12h-36.06Z"/>
+        <path d="M820.56,1190.94c-5.34,2.08-11.58,2.97-18.7,2.97-29.53,0-48.53-19.74-48.53-45.56s18.7-45.56,48.53-45.56c7.12,0,13.5.74,18.7,2.38,6.53,2.08,10.09,4.75,13.95,8.61l-.45-20.63c-10.98-4.6-20.33-5.64-32.35-5.64-38.14,0-65.6,26.42-65.6,60.85s26.27,60.85,65.6,60.85c12.02,0,21.37-1.48,32.35-6.08l.59-21.67c-3.41,3.86-6.38,6.53-14.1,9.5Z"/>
+        <path d="M874.77,1192.57v-93.79c0-4.3.74-6.83,2.23-9.79h-20.48c1.48,2.97,2.23,5.49,2.23,9.79v99.14c0,4.3-.74,6.83-2.23,9.79h58.18l2.37-18.25c-3.41,1.93-6.83,3.12-12.91,3.12h-29.38Z"/>
+        <path d="M953.36,1088.98h-20.48c1.48,2.97,2.23,5.49,2.23,9.79v99.14c0,4.3-.74,6.83-2.23,9.79h20.48c-1.48-2.97-2.23-5.49-2.23-9.79v-99.14c0-4.3.74-6.83,2.23-9.79Z"/>
+        <path d="M1086.97,1088.98h-19.59c1.48,2.97,2.23,5.49,2.23,9.79v81.62l-71.24-91.42h-17.81c1.48,2.97,2.23,5.49,2.23,9.79v99.14c0,4.3-.74,6.83-2.23,9.79h19.59c-1.48-2.97-2.23-5.49-2.23-9.79v-82.96l71.83,92.75h15.73c-.45-2.97-.74-5.49-.74-9.79v-99.14c0-4.3.74-6.83,2.23-9.79Z"/>
+        <path d="M1134.65,1088.98h-20.48c1.48,2.97,2.23,5.49,2.23,9.79v99.14c0,4.3-.74,6.83-2.23,9.79h20.48c-1.48-2.97-2.23-5.49-2.23-9.79v-99.14c0-4.3.74-6.83,2.23-9.79Z"/>
+        <path d="M1240.07,1190.94c-5.34,2.08-11.58,2.97-18.7,2.97-29.53,0-48.53-19.74-48.53-45.56s18.7-45.56,48.53-45.56c7.12,0,13.5.74,18.7,2.38,6.53,2.08,10.09,4.75,13.95,8.61l-.45-20.63c-10.98-4.6-20.33-5.64-32.35-5.64-38.14,0-65.6,26.42-65.6,60.85s26.27,60.85,65.6,60.85c12.02,0,21.37-1.48,32.35-6.08l.59-21.67c-3.41,3.86-6.38,6.53-14.1,9.5Z"/>
+      </g>
+    </svg>
+    <div class="meta">
+      <div class="continued">Donor screening questionnaire <span style="color: var(--brown-60);">— continued</span></div>
+      <div>Form FDS-01 &nbsp;·&nbsp; v2026.1</div>
+    </div>
+  </header>
+
+  <section>
+    <div class="section-head">
+      <span class="section-num">03</span>
+      <h2>Social history</h2>
+    </div>
+
+    <div class="q">
+      <span class="num">18</span>
+      <div class="body">
+        <p class="question-text">History of IV drug use or any injection that is not for cosmetic or therapeutic use?</p>
+        <div class="yn-row">
+          <label class="yn-option"><input type="checkbox" class="yn-box">Yes</label>
+          <label class="yn-option"><input type="checkbox" class="yn-box">No</label>
+          <span class="yn-detail-label">Details</span>
+          <input type="text" class="yn-detail">
+        </div>
+      </div>
+    </div>
+
+    <div class="q">
+      <span class="num">19</span>
+      <div class="body">
+        <p class="question-text">Have you ever had sexual contact with someone who injects drugs?</p>
+        <div class="yn-row">
+          <label class="yn-option"><input type="checkbox" class="yn-box">Yes</label>
+          <label class="yn-option"><input type="checkbox" class="yn-box">No</label>
+          <span class="yn-detail-label">Details</span>
+          <input type="text" class="yn-detail">
+        </div>
+      </div>
+    </div>
+
+    <div class="q">
+      <span class="num">20</span>
+      <div class="body">
+        <p class="question-text">Have you ever had sexual contact with someone of the same sex?</p>
+        <div class="yn-row">
+          <label class="yn-option"><input type="checkbox" class="yn-box">Yes</label>
+          <label class="yn-option"><input type="checkbox" class="yn-box">No</label>
+          <span class="yn-detail-label">Details</span>
+          <input type="text" class="yn-detail">
+        </div>
+      </div>
+    </div>
+
+    <div class="q">
+      <span class="num">21</span>
+      <div class="body">
+        <p class="question-text">Have you ever had sexual contact with a man who identifies as gay or bisexual?</p>
+        <div class="yn-row">
+          <label class="yn-option"><input type="checkbox" class="yn-box">Yes</label>
+          <label class="yn-option"><input type="checkbox" class="yn-box">No</label>
+          <span class="yn-detail-label">Details</span>
+          <input type="text" class="yn-detail">
+        </div>
+      </div>
+    </div>
+
+    <div class="q">
+      <span class="num">22</span>
+      <div class="body">
+        <p class="question-text">Have you ever had sexual contact in exchange for money or other goods or services?</p>
+        <div class="yn-row">
+          <label class="yn-option"><input type="checkbox" class="yn-box">Yes</label>
+          <label class="yn-option"><input type="checkbox" class="yn-box">No</label>
+          <span class="yn-detail-label">Details</span>
+          <input type="text" class="yn-detail">
+        </div>
+      </div>
+    </div>
+
+    <div class="q">
+      <span class="num">23</span>
+      <div class="body">
+        <p class="question-text">Have you ever engaged in sex work?</p>
+        <div class="yn-row">
+          <label class="yn-option"><input type="checkbox" class="yn-box">Yes</label>
+          <label class="yn-option"><input type="checkbox" class="yn-box">No</label>
+          <span class="yn-detail-label">Details</span>
+          <input type="text" class="yn-detail">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="footer">
+    <div>The Microbiome Clinic <span class="mono-dot"></span> themicrobiomeclinic.com.au</div>
+    <div>Page 5 of 6 <span class="mono-dot"></span> continued overleaf</div>
+  </div>
+</div>
+
+<!-- ================= PAGE 6 ================= -->
+<div class="page">
+
+  <header class="header-slim">
+    <svg class="logo-mini" viewBox="720 780 560 440" xmlns="http://www.w3.org/2000/svg" aria-label="The Microbiome Clinic">
+      <g fill="#5D5A49">
+        <path d="M851.45,802.09c-.15-4.3.74-6.83,3.71-9.79h-18.85l-36.36,74.8-36.95-74.8h-19.14c2.97,2.97,4.3,5.49,4.16,12.91l-2.37,96.02c-.15,4.3-.74,6.83-2.23,9.79h19.89c-1.48-2.97-2.37-5.49-2.23-9.79l1.63-73.02,31.31,63.52h11.43l30.87-63.81,1.78,73.31c.15,4.3-.74,6.83-2.23,9.79h20.18c-1.48-2.97-2.08-5.49-2.23-9.79l-2.37-99.14Z"/>
+        <path d="M904.99,792.29h-20.48c1.48,2.97,2.23,5.49,2.23,9.79v99.14c0,4.3-.74,6.83-2.23,9.79h20.48c-1.48-2.97-2.23-5.49-2.23-9.79v-99.14c0-4.3.74-6.83,2.23-9.79Z"/>
+        <path d="M1012.11,894.25c-5.34,2.08-11.58,2.97-18.7,2.97-29.53,0-48.53-19.74-48.53-45.56s18.7-45.56,48.53-45.56c7.12,0,13.51.74,18.7,2.38,6.53,2.08,10.09,4.75,13.95,8.61l-.45-20.63c-10.98-4.6-20.33-5.64-32.35-5.64-38.14,0-65.6,26.42-65.6,60.85s26.27,60.85,65.6,60.85c12.02,0,21.37-1.48,32.35-6.08l.59-21.67c-3.41,3.86-6.38,6.53-14.1,9.5Z"/>
+        <path d="M1128.13,900.04c-6.68-9.94-15.73-23.89-24.34-35.17-1.93-2.38-3.41-4.45-5.94-6.68,14.1-5.05,22.26-16.18,22.26-31.46,0-19-13.65-34.43-36.06-34.43h-34.28c1.48,2.97,2.23,5.49,2.23,9.79v99.14c0,4.3-.74,6.83-2.23,9.79h20.48c-1.48-2.97-2.23-5.49-2.23-9.79v-40.96c2.37,0,5.34.15,8.46,1.04,5.05,1.48,9.2,5.94,11.72,9.35,7.27,10.39,14.4,20.78,21.52,31.31,1.93,2.82,3.12,5.34,4.01,9.05h23.75c-3.71-3.12-6.08-6.23-9.35-10.98ZM1078.56,846.16c-3.71,0-6.83-.15-10.54-1.04v-37.84h12.91c14.99,0,22.41,8.46,22.41,19.59s-7.42,19.29-24.78,19.29Z"/>
+        <path d="M1203.04,790.81c-34.28,0-60.85,26.42-60.85,60.85s26.56,60.85,60.85,60.85,60.85-26.42,60.85-60.85-26.56-60.85-60.85-60.85ZM1202.89,897.07c-24.49,0-43.48-19.74-43.48-45.41s19-45.56,43.48-45.56,43.48,19.74,43.48,45.56-19,45.41-43.48,45.41Z"/>
+        <path d="M801.03,996.02c6.98-4.9,11.58-13.36,11.58-23.45,0-17.81-12.91-31.91-33.69-31.91h-33.24c1.48,2.97,2.23,5.49,2.23,9.79v99.14c0,4.3-.74,6.83-2.23,9.79h40.07c23.3,0,37.4-12.61,37.4-33.24,0-15.43-9.35-26.71-22.11-30.13ZM763.92,955.66h12.91c12.17,0,19.29,7.72,19.29,17.51,0,10.39-5.64,18.11-20.63,18.11h-11.58v-35.62ZM783.96,1044.26h-20.04v-37.99h19.29c15.43,0,23.15,8.9,23.15,19.59s-6.23,18.4-22.41,18.4Z"/>
+        <path d="M868.98,940.67h-20.48c1.48,2.97,2.23,5.49,2.23,9.79v99.14c0,4.3-.74,6.83-2.23,9.79h20.48c-1.48-2.97-2.23-5.49-2.23-9.79v-99.14c0-4.3.74-6.83,2.23-9.79Z"/>
+        <path d="M956.47,939.18c-34.28,0-60.85,26.42-60.85,60.85s26.56,60.85,60.85,60.85,60.85-26.42,60.85-60.85-26.56-60.85-60.85-60.85ZM956.32,1045.44c-24.49,0-43.48-19.74-43.48-45.41s19-45.56,43.48-45.56,43.48,19.74,43.48,45.56-19,45.41-43.48,45.41Z"/>
+        <path d="M1150.51,950.46c-.15-4.3.74-6.83,3.71-9.79h-18.85l-36.36,74.8-36.95-74.8h-19.14c2.97,2.97,4.3,5.49,4.16,12.91l-2.37,96.02c-.15,4.3-.74,6.83-2.23,9.79h19.89c-1.48-2.97-2.37-5.49-2.23-9.79l1.63-73.02,31.31,63.52h11.43l30.87-63.81,1.78,73.31c.15,4.3-.74,6.83-2.23,9.79h20.18c-1.48-2.97-2.08-5.49-2.23-9.79l-2.37-99.14Z"/>
+        <path d="M1204.66,1044.26v-37.7h33.69c4.3,0,6.83.74,9.79,2.23v-19.59c-2.97,1.48-5.49,2.23-9.79,2.23h-33.69v-35.62h32.5c6.08,0,9.5,1.19,12.91,3.12l-.74-18.25h-62.92c1.48,2.97,2.23,5.49,2.23,9.79v99.14c0,4.3-.74,6.83-2.23,9.79h64.26l4.16-18.25c-3.41,1.93-8.01,3.12-14.1,3.12h-36.06Z"/>
+        <path d="M820.56,1190.94c-5.34,2.08-11.58,2.97-18.7,2.97-29.53,0-48.53-19.74-48.53-45.56s18.7-45.56,48.53-45.56c7.12,0,13.5.74,18.7,2.38,6.53,2.08,10.09,4.75,13.95,8.61l-.45-20.63c-10.98-4.6-20.33-5.64-32.35-5.64-38.14,0-65.6,26.42-65.6,60.85s26.27,60.85,65.6,60.85c12.02,0,21.37-1.48,32.35-6.08l.59-21.67c-3.41,3.86-6.38,6.53-14.1,9.5Z"/>
+        <path d="M874.77,1192.57v-93.79c0-4.3.74-6.83,2.23-9.79h-20.48c1.48,2.97,2.23,5.49,2.23,9.79v99.14c0,4.3-.74,6.83-2.23,9.79h58.18l2.37-18.25c-3.41,1.93-6.83,3.12-12.91,3.12h-29.38Z"/>
+        <path d="M953.36,1088.98h-20.48c1.48,2.97,2.23,5.49,2.23,9.79v99.14c0,4.3-.74,6.83-2.23,9.79h20.48c-1.48-2.97-2.23-5.49-2.23-9.79v-99.14c0-4.3.74-6.83,2.23-9.79Z"/>
+        <path d="M1086.97,1088.98h-19.59c1.48,2.97,2.23,5.49,2.23,9.79v81.62l-71.24-91.42h-17.81c1.48,2.97,2.23,5.49,2.23,9.79v99.14c0,4.3-.74,6.83-2.23,9.79h19.59c-1.48-2.97-2.23-5.49-2.23-9.79v-82.96l71.83,92.75h15.73c-.45-2.97-.74-5.49-.74-9.79v-99.14c0-4.3.74-6.83,2.23-9.79Z"/>
+        <path d="M1134.65,1088.98h-20.48c1.48,2.97,2.23,5.49,2.23,9.79v99.14c0,4.3-.74,6.83-2.23,9.79h20.48c-1.48-2.97-2.23-5.49-2.23-9.79v-99.14c0-4.3.74-6.83,2.23-9.79Z"/>
+        <path d="M1240.07,1190.94c-5.34,2.08-11.58,2.97-18.7,2.97-29.53,0-48.53-19.74-48.53-45.56s18.7-45.56,48.53-45.56c7.12,0,13.5.74,18.7,2.38,6.53,2.08,10.09,4.75,13.95,8.61l-.45-20.63c-10.98-4.6-20.33-5.64-32.35-5.64-38.14,0-65.6,26.42-65.6,60.85s26.27,60.85,65.6,60.85c12.02,0,21.37-1.48,32.35-6.08l.59-21.67c-3.41,3.86-6.38,6.53-14.1,9.5Z"/>
+      </g>
+    </svg>
+    <div class="meta">
+      <div class="continued">Donor screening questionnaire <span style="color: var(--brown-60);">— continued</span></div>
+      <div>Form FDS-01 &nbsp;·&nbsp; v2026.1</div>
+    </div>
+  </header>
+
+  <section>
+    <div class="section-head">
+      <span class="section-num">03</span>
+      <h2>Social history <span class="section-cont">continued</span></h2>
+    </div>
+
+    <div class="q">
+      <span class="num">24</span>
+      <div class="body">
+        <p class="question-text">Have you ever had sexual contact with someone who turned out to be infected with HIV, HTLV, Hepatitis or Syphilis?</p>
+        <div class="yn-row">
+          <label class="yn-option"><input type="checkbox" class="yn-box">Yes</label>
+          <label class="yn-option"><input type="checkbox" class="yn-box">No</label>
+          <span class="yn-detail-label">Details</span>
+          <input type="text" class="yn-detail">
+        </div>
+      </div>
+    </div>
+
+    <div class="q">
+      <span class="num">25</span>
+      <div class="body">
+        <p class="question-text">Have you ever been diagnosed with a sexually transmittable disease (e.g. HIV, syphilis, hepatitis B, hepatitis C, gonorrhoea, chlamydia, genital herpes, trichomonas, bacterial vaginosis, HPV, other)?</p>
+        <div class="yn-row">
+          <label class="yn-option"><input type="checkbox" class="yn-box">Yes</label>
+          <label class="yn-option"><input type="checkbox" class="yn-box">No</label>
+          <span class="yn-detail-label">Details</span>
+          <input type="text" class="yn-detail">
+        </div>
+      </div>
+    </div>
+
+    <div class="q">
+      <span class="num">26</span>
+      <div class="body">
+        <p class="question-text">Have you ever been imprisoned for a consecutive 72 hour period or longer?</p>
+        <div class="yn-row">
+          <label class="yn-option"><input type="checkbox" class="yn-box">Yes</label>
+          <label class="yn-option"><input type="checkbox" class="yn-box">No</label>
+          <span class="yn-detail-label">Details</span>
+          <input type="text" class="yn-detail">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-head">
+      <span class="section-num">04</span>
+      <h2>Donor declaration</h2>
+    </div>
+    <div class="auth-box">
+      <p class="auth-statement">
+        I confirm that the answers I have provided in this questionnaire are <em>true, accurate and complete</em> to the best of my knowledge. I understand that this information will be used to assess my suitability as a faecal microbiota transplant (FMT) donor and will be held in confidence in accordance with the <em>Privacy Act 1988</em> (Cth) and the Australian Privacy Principles. I agree to notify The Microbiome Clinic promptly if any of my responses change during the period of donation.
+      </p>
+      <div class="signature-row">
+        <div class="field"><label>Donor signature</label><input type="text" class="line"></div>
+        <div class="field"><label>Printed name</label><input type="text" class="line"></div>
+        <div class="field"><label>Date signed</label><input type="text" class="line"></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="footer">
+    <div>The Microbiome Clinic <span class="mono-dot"></span> reception@themicrobiomeclinic.com.au</div>
+    <div>Page 6 of 6</div>
+  </div>
+</div>
+
+</body>
+</html>
